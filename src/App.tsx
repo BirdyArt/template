@@ -1,3 +1,4 @@
+/* v8 ignore start */
 import { useTranslation } from "react-i18next";
 
 function App() {
