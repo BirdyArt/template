@@ -1,5 +1,9 @@
+import { useTranslation } from "react-i18next";
+
 function App() {
-  return <p>Frontend Template</p>;
+  const { t } = useTranslation("template");
+
+  return <p>{t("title")}</p>;
 }
 
 export default App;
