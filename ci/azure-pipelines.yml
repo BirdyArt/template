@@ -1,0 +1,57 @@
+trigger:
+  - main
+
+pool:
+  vmImage: "windows-latest"
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "20.x"
+    displayName: "Install Node.js"
+
+  - script: npm install
+    displayName: "Install dependencies"
+
+  - script: run test:ci
+    displayName: "Run tests"
+
+  - task: PublishTestResults@2
+    displayName: "Supply npm test results to pipelines"
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFiles: "reports/junit.xml"
+
+  - script: npm run build
+    displayName: "Create production build"
+
+  - task: CopyFiles@2
+    displayName: "Copy build files"
+    inputs:
+      sourceFolder: "dist"
+      Contents: "**/*"
+      TargetFolder: "$(Build.ArtifactStagingDirectory)"
+      cleanTargetFolder: true
+
+  - task: CopyFiles@2
+    displayName: "Copy Web.config file"
+    inputs:
+      Contents: "Web.config"
+      TargetFolder: "$(Build.ArtifactStagingDirectory)"
+      cleanTargetFolder: false
+
+  - task: ArchiveFiles@2
+    displayName: "Archive files"
+    inputs:
+      rootFolderOrFile: "$(Build.ArtifactStagingDirectory)"
+      includeRootFolder: false
+      archiveType: zip
+      archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+      replaceExistingArchive: true
+
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish Build Artifacts"
+    inputs:
+      PathtoPublish: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
+      ArtifactName: "drop"
+      publishLocation: "Container"
