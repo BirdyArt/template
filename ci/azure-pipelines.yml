@@ -13,7 +13,7 @@ steps:
   - script: npm install
     displayName: "Install dependencies"
 
-  - script: run test:ci
+  - script: npm run test:ci
     displayName: "Run tests"
 
   - task: PublishTestResults@2
