@@ -13,6 +13,11 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/material-icons": "^5.0.11",
+    "@fontsource/roboto": "^5.0.8",
+    "@mui/material": "^5.15.5",
     "axios": "^1.6.5",
     "i18next": "^23.7.16",
     "i18next-browser-languagedetector": "^7.2.0",
@@ -25,6 +30,7 @@
     "@storybook/addon-interactions": "^7.6.10",
     "@storybook/addon-links": "^7.6.10",
     "@storybook/addon-onboarding": "^1.0.10",
+    "@storybook/addon-themes": "^7.6.10",
     "@storybook/blocks": "^7.6.10",
     "@storybook/react": "^7.6.10",
     "@storybook/react-vite": "^7.6.10",

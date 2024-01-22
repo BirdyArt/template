@@ -1,4 +1,3 @@
-/* v8 ignore start */
 import Axios from "axios";
 
 export const axios = Axios.create({
