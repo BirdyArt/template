@@ -10,7 +10,8 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test-storybook": "test-storybook --browsers firefox chromium webkit"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -18,6 +19,7 @@
     "@fontsource/material-icons": "^5.0.11",
     "@fontsource/roboto": "^5.0.8",
     "@mui/material": "^5.15.5",
+    "axe-playwright": "^2.0.1",
     "axios": "^1.6.5",
     "i18next": "^23.7.16",
     "i18next-browser-languagedetector": "^7.2.0",
@@ -26,15 +28,18 @@
     "react-i18next": "^14.0.0"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^7.6.10",
     "@storybook/addon-essentials": "^7.6.10",
     "@storybook/addon-interactions": "^7.6.10",
     "@storybook/addon-links": "^7.6.10",
     "@storybook/addon-onboarding": "^1.0.10",
     "@storybook/addon-themes": "^7.6.10",
+    "@storybook/addon-viewport": "^7.6.10",
     "@storybook/blocks": "^7.6.10",
     "@storybook/react": "^7.6.10",
     "@storybook/react-vite": "^7.6.10",
     "@storybook/test": "^7.6.10",
+    "@storybook/test-runner": "^0.16.0",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
