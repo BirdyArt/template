@@ -14,13 +14,13 @@ steps:
     displayName: "Install dependencies"
 
   - script: npm run test:ci
-    displayName: "Run tests"
+    displayName: "Run unit tests"
 
   - script: npm run test-storybook:ci
-    displayName: "Build + serve Storybook and run tests"
+    displayName: "Run component tests"
 
   - task: PublishTestResults@2
-    displayName: "Supply npm test results to pipelines"
+    displayName: "Supply test results to pipelines"
     condition: succeededOrFailed()
     inputs:
       testResultsFiles: "*.xml"
