@@ -29,24 +29,3 @@ stages:
               containerRegistry: $(dockerRegistryServiceConnection)
               tags: |
                 $(tag)
-
-  - stage: Deploy
-    displayName: Deploy to Azure Web App
-    dependsOn: Build
-    condition: succeeded()
-    jobs:
-      - deployment: Deploy
-        displayName: Deploy
-        environment: "frontend-template"
-        pool:
-          vmImage: "ubuntu-latest"
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - task: AzureWebAppContainer@1
-                  inputs:
-                    appType: "webAppLinux"
-                    appName: "frontend-template"
-                    azureSubscription: "your-service-connection-name"
-                    containers: "$(containerRegistry)/$(imageRepository):$(tag)"
