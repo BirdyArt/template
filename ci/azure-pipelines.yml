@@ -16,15 +16,11 @@ stages:
         pool:
           vmImage: "ubuntu-latest"
         steps:
-          - script: |
-              docker login $(DOCKER_REGISTRY) -u $(DOCKER_USER) -p $(DOCKER_TOKEN)
-            displayName: Authenticate at Container Registry
           - task: Docker@2
             displayName: Build and push an image to container registry
             inputs:
-              containerRegistry: "frontendtemplate"
-              command: "buildAndPush"
-              repository: "samples/frontend-template"
-              Dockerfile: "**/Dockerfile"
-              tags: |
-                $(tag)
+              containerRegistry: 'frontend-template-connection'
+              repository: 'samples/frontend-template'
+              command: 'buildAndPush'
+              Dockerfile: '**/Dockerfile'
+              tags: '$(tag)'
