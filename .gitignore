@@ -9,7 +9,7 @@ lerna-debug.log*
 
 node_modules
 dist
-reports
+*.xml
 storybook-static
 dist-ssr
 coverage
