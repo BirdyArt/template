@@ -21,6 +21,7 @@ stages:
             inputs:
               containerRegistry: "frontendtemplate"
               command: "buildAndPush"
+              repository: "samples/frontend-template"
               Dockerfile: "**/Dockerfile"
               tags: |
                 $(tag)
