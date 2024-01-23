@@ -16,6 +16,9 @@ steps:
   - script: npm run test:ci
     displayName: "Run tests"
 
+  - script: npm run test-storybook:ci
+    displayName: "Build + serve Storybook and run tests"
+
   - task: PublishTestResults@2
     displayName: "Supply npm test results to pipelines"
     condition: succeededOrFailed()

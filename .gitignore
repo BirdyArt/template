@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 reports
+storybook-static
 dist-ssr
 coverage
 .env

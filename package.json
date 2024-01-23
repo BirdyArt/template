@@ -12,7 +12,8 @@
     "coverage": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test-storybook": "test-storybook --browsers firefox chromium webkit"
+    "test-storybook": "test-storybook --browsers firefox chromium webkit",
+    "test-storybook:ci": "npx concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"npx storybook build --quiet && npx http-server storybook-static --port 6006 --silent\" \"wait-on tcp:6006 && npm run test-storybook\""
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
