@@ -23,7 +23,8 @@ steps:
     displayName: "Supply npm test results to pipelines"
     condition: succeededOrFailed()
     inputs:
-      testResultsFiles: "reports/junit.xml"
+      testResultsFiles: "*.xml"
+      mergeTestResults: true
 
   - script: npm run build
     displayName: "Create production build"
