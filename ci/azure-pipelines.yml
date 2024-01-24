@@ -37,5 +37,6 @@ stages:
               steps:
                 - task: AzureWebAppContainer@1
                   inputs:
-                    azureSubscription: "Pay-As-You-Go (0beee491-5b30-485e-94e2-07cd165984df)"
-                    appName: "frontend-template"
+                    azureSubscription: 'Pay-As-You-Go (0beee491-5b30-485e-94e2-07cd165984df)'
+                    appName: 'frontend-template'
+                    containers: 'frontendtemplate/samples/frontend-template:5862'
