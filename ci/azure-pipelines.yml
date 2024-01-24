@@ -20,23 +20,4 @@ stages:
               repository: "samples/frontend-template"
               command: "buildAndPush"
               Dockerfile: "**/Dockerfile"
-
-  - stage: Deploy
-    displayName: Deploy to Azure Web App
-    dependsOn: Build
-    condition: succeeded()
-    jobs:
-      - deployment: Deploy
-        displayName: Deploy
-        environment: "your-azure-webapp-name"
-        pool:
-          vmImage: "ubuntu-latest"
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - task: AzureWebAppContainer@1
-                  inputs:
-                    azureSubscription: 'Pay-As-You-Go (0beee491-5b30-485e-94e2-07cd165984df)'
-                    appName: 'frontend-template'
-                    containers: 'frontendtemplate/samples/frontend-template:5862'
+              tags: "latest"
