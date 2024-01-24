@@ -13,7 +13,7 @@ function App() {
 
   return (
     <ThemeProvider theme={prefersDarkMode ? darkTheme : lightTheme}>
-      <Button variant="contained">{t("title")}</Button>
+      <Button>{t("title")}</Button>
     </ThemeProvider>
   );
 }

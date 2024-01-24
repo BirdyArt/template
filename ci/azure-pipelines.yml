@@ -6,7 +6,7 @@ resources:
 
 stages:
   - stage: Test
-    displayName: Run unit and component tests
+    displayName: Run Tests
     jobs:
       - job: Test
         displayName: Test
@@ -35,7 +35,7 @@ stages:
               mergeTestResults: true
 
   - stage: Build
-    displayName: Build and push an image to container registry
+    displayName: Build and Push
     jobs:
       - job: Build
         displayName: Build
@@ -50,3 +50,17 @@ stages:
               command: "buildAndPush"
               Dockerfile: "**/Dockerfile"
               tags: "latest"
+
+  - stage: Restart
+    displayName: Restart Web App
+    jobs:
+      - job: Restart
+        displayName: Restart
+        pool:
+          vmImage: "ubuntu-latest"
+        steps:
+          - task: AzureAppServiceManage@0
+            inputs:
+              azureSubscription: "Pay-As-You-Go (0beee491-5b30-485e-94e2-07cd165984df)"
+              Action: "Restart Azure App Service"
+              WebAppName: "frontend-template"
