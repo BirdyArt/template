@@ -5,8 +5,37 @@ resources:
   - repo: self
 
 stages:
+  - stage: Test
+    displayName: Run unit and component tests
+    jobs:
+      - job: Test
+        displayName: Test
+        pool:
+          vmImage: "windows-latest"
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "20.x"
+            displayName: "Install Node.js"
+
+          - script: npm install
+            displayName: "Install dependencies"
+
+          - script: npm run test:ci
+            displayName: "Run unit tests"
+
+          - script: npm run test-storybook:ci
+            displayName: "Run component tests"
+
+          - task: PublishTestResults@2
+            displayName: "Supply test results to pipelines"
+            condition: succeededOrFailed()
+            inputs:
+              testResultsFiles: "*.xml"
+              mergeTestResults: true
+
   - stage: Build
-    displayName: Build image
+    displayName: Build and push an image to container registry
     jobs:
       - job: Build
         displayName: Build
